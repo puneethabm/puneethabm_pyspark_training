@@ -1,5 +1,5 @@
 '''
-HDFS - Data sources
+Dealing with schemas
 
 @author: Puneetha B M
 '''
