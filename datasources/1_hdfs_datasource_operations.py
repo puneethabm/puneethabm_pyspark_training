@@ -204,21 +204,6 @@ def delete_hdfs_directory(sc, spark, input_hdfs_path):
             print("Deleting HDFS location=({0}) - STARTED ".format(input_hdfs_path))
             fs.delete(Path(input_hdfs_path), True)
             print("Deleting HDFS location=({0}) - DONE ".format(input_hdfs_path))
-
-def read_from_hdfs_location_with_schema(sc, spark):
-    print("Read HDFS Location - Load with schema - CSV")
-    from pyspark.sql.types import StructType, StructField, StringType, IntegerType
-    schema = StructType([
-                     StructField("id", StringType(), True)
-                     ,StructField("name", StringType(), True)
-                     ])
-
-    df_csv = spark.read.format("csv")\
-            .option("delimiter", "\t")\
-            .schema(schema)\
-            .load(location_prefix + 'raw_data/csv_sample/*')
-    df_csv.show(5, False)
-    
                 
 if __name__ == '__main__':
     from pyspark.sql import SparkSession
@@ -248,4 +233,3 @@ if __name__ == '__main__':
     input_hdfs_path = location_prefix + "location_spark_created/csv_partition_sample"
     delete_hdfs_directory(sc, spark, input_hdfs_path)
     
-    read_from_hdfs_location_with_schema(sc, spark)
