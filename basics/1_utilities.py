@@ -103,16 +103,6 @@ def set_log_level(sc, spark):
     print("How to set log level")
     sc.setLogLevel('ERROR')
 
-def get_or_set_spark_setting(sc, spark):
-    print("Get all spark settings:")
-    print(sc._conf.getAll())
-    
-    print("Set spark settings")
-    sc._conf.set("spark.sql.parquet.compression.codec", "snappy")
-    
-    print("Get spark settings: {0}".format(sc._conf.get("spark.sql.parquet.compression.codec")))
-
-    
 def invoke_python_file(sc, spark):
     print("---------------------------------------------------------------")
     print("Invoke Python file. Run other python script inside pyspark")
@@ -167,8 +157,6 @@ if __name__ == '__main__':
     get_job_time(sc, spark)
     
     set_log_level(sc, spark)
-    
-    get_or_set_spark_setting(sc, spark)
     
     invoke_python_file(sc, spark)
 
